@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌸 Bloom & Beyond</h1>
+
+<h2>Admin Dashboard</h2>
+
+<div class="card">
+
+<h2 id="customer"></h2>
+
+<h3 id="stampCount"></h3>
+
+<button onclick="addStamp()">
+➕ Add Stamp
+</button>
+
+<button onclick="removeStamp()">
+➖ Remove Stamp
+</button>
+
+<button onclick="logoutAdmin()">
+<button onclick="location.href='customers.html'">
+👥 Customers
+</button>
+🚪 Logout
+</button>
+
+</div>
+
+</div>
+<script type="module" src="firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+document.getElementById("customer").innerHTML =
+"Customer : " + localStorage.getItem("customerName");
+
+document.getElementById("stampCount").innerHTML =
+"🌹 " + localStorage.getItem("customerStamps") + " / 10";
+
+</script>
+
+</body>
+</html>

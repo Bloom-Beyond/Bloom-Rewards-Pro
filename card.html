@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Card</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌸 Bloom & Beyond</h1>
+
+<h2>My Rewards Card</h2>
+
+<div class="card">
+
+<h2 id="customerName"></h2>
+
+<h3 id="stampText"></h3>
+
+<p>Buy 10 Bouquets and get 1 FREE Bouquet 🎁</p>
+
+</div>
+
+</div>
+
+<script>
+
+let name = localStorage.getItem("customerName");
+let stamps = localStorage.getItem("customerStamps");
+
+document.getElementById("customerName").innerHTML = "Welcome, " + name;
+document.getElementById("stampText").innerHTML = "🌹 " + stamps + " / 10 Stamps";
+<script type="module" src="firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+</script>
+
+document.getElementById("customerName").innerHTML =
+"Welcome, " + localStorage.getItem("customerName");
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customers</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌸 Bloom & Beyond</h1>
+
+<h2>Customers</h2>
+
+<div class="card">
+
+<input type="text" id="search" placeholder="Search Mobile Number">
+
+<button onclick="searchCustomer()">
+🔍 Search
+</button>
+
+<div id="result"></div>
+
+<br>
+
+<button onclick="location.href='dashboard.html'">
+⬅ Back
+</button>
+
+</div>
+
+</div>
+<script type="module" src="firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
