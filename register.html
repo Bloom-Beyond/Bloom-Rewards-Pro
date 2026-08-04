@@ -22,9 +22,17 @@
 
 <div class="card">
 
-<input type="text" id="name" placeholder="Full Name">
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
 
-<input type="tel" id="mobile" placeholder="Mobile Number">
+<input
+type="tel"
+id="mobile"
+placeholder="Mobile Number"
+required>
 
 <button onclick="saveCustomer()">
 Create My Card
@@ -33,8 +41,12 @@ Create My Card
 </div>
 
 </div>
-<script type="module" src="firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="script.js"></script>
 
