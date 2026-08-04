@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>My Card</title>
+<title>My Rewards Card</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -22,19 +22,46 @@
 
 <div class="card">
 
-<h2 id="customerName"></h2>
+<h2 id="customerName">Welcome</h2>
 
-<h3 id="stampText"></h3>
+<h3 id="stampText">🌹 0 / 10 Stamps</h3>
 
-<p>Buy 10 Bouquets and get 1 FREE Bouquet 🎁</p>
+<p>
+Buy 10 Bouquets and Get 1 FREE Bouquet 🎁
+</p>
 
 </div>
+
+<br>
+
+<button onclick="window.location.href='index.html'">
+🏠 Home
+</button>
 
 </div>
 
 <script>
 
-let name = localStorage.getItem("customerName");
+const customerName = localStorage.getItem("customerName");
+const customerStamps = localStorage.getItem("customerStamps");
+
+if(customerName){
+    document.getElementById("customerName").innerHTML =
+    "Welcome, " + customerName;
+}
+
+if(customerStamps){
+    document.getElementById("stampText").innerHTML =
+    "🌹 " + customerStamps + " / 10 Stamps";
+}
+
+</script>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>let name = localStorage.getItem("customerName");
 let stamps = localStorage.getItem("customerStamps");
 
 document.getElementById("customerName").innerHTML = "Welcome, " + name;
