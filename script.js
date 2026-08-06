@@ -14,7 +14,7 @@ updateDoc
 // =======================
 
 async function saveCustomer(){
-
+alert("Function Started");
 const name=document.getElementById("name").value.trim();
 const mobile=document.getElementById("mobile").value.trim();
 
