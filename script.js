@@ -23,26 +23,30 @@ alert("Please fill all details");
 return;
 }
 
-try{
+try {
 
-await setDoc(doc(db,"customers",mobile),{
+    alert("Inside Try");
 
-name:name,
-mobile:mobile,
-stamps:0,
-createdAt:new Date().toISOString()
+    await setDoc(doc(db,"customers",mobile),{
+        name:name,
+        mobile:mobile,
+        stamps:0,
+        createdAt:new Date().toISOString()
+    });
 
-});
+    alert("Saved Successfully");
 
-localStorage.setItem("customerName",name);
-localStorage.setItem("customerMobile",mobile);
-localStorage.setItem("customerStamps","0");
+    localStorage.setItem("customerName",name);
+    localStorage.setItem("customerMobile",mobile);
+    localStorage.setItem("customerStamps","0");
 
-window.location.href="card.html";
+    window.location.href="card.html";
 
-}catch(e){
+} catch(e) {
 
-alert(e.message);
+    alert("ERROR");
+    alert(e.code);
+    alert(e.message);
 
 }
 
