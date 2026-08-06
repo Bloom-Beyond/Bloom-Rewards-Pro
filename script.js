@@ -1,205 +1,214 @@
-// ============================
-// Bloom Rewards Pro
-// script.js
-// ============================
-
 import { db } from "./firebase.js";
 
 import {
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc
+doc,
+setDoc,
+getDoc,
+updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// ============================
-// Customer Registration
-// ============================
 
-async function saveCustomer() {
+// =======================
+// Register Customer
+// =======================
 
-    const name = document.getElementById("name").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
+async function saveCustomer(){
 
-    if(name==="" || mobile===""){
-        alert("Please fill all details");
-        return;
-    }
+const name=document.getElementById("name").value.trim();
+const mobile=document.getElementById("mobile").value.trim();
 
-    try{
+if(name==="" || mobile===""){
+alert("Please fill all details");
+return;
+}
 
-        await setDoc(doc(db,"customers",mobile),{
-            name,
-            mobile,
-            stamps:0,
-            createdAt:new Date().toISOString()
-        });
+try{
 
-        localStorage.setItem("customerName",name);
-        localStorage.setItem("customerMobile",mobile);
-        localStorage.setItem("customerStamps","0");
+await setDoc(doc(db,"customers",mobile),{
 
-        alert("Customer Registered Successfully 🌸");
+name:name,
+mobile:mobile,
+stamps:0,
+createdAt:new Date().toISOString()
 
-        window.location.href="card.html";
+});
 
-    }catch(error){
+localStorage.setItem("customerName",name);
+localStorage.setItem("customerMobile",mobile);
+localStorage.setItem("customerStamps","0");
 
-        alert(error.message);
+window.location.href="card.html";
 
-    }
+}catch(e){
+
+alert(e.message);
+
+}
 
 }
 
 
-// ============================
+
+// =======================
 // Admin Login
-// ============================
+// =======================
 
 function loginAdmin(){
 
-    const pin=document.getElementById("pin").value.trim();
+const pin=document.getElementById("pin").value.trim();
 
-    if(pin==="2580"){
+if(pin==="2580"){
 
-        window.location.href="dashboard.html";
+window.location.href="dashboard.html";
 
-    }else{
+}else{
 
-        alert("Wrong Admin PIN");
+alert("Wrong PIN");
 
-    }
+}
 
 }
 
 
-// ============================
+
+// =======================
 // Add Stamp
-// ============================
+// =======================
 
 async function addStamp(){
 
-    const mobile=localStorage.getItem("customerMobile");
+const mobile=localStorage.getItem("customerMobile");
 
-    const ref=doc(db,"customers",mobile);
+const ref=doc(db,"customers",mobile);
 
-    const snap=await getDoc(ref);
+const snap=await getDoc(ref);
 
-    if(!snap.exists()){
-        alert("Customer not found");
-        return;
-    }
+if(!snap.exists()){
 
-    let data=snap.data();
+alert("Customer Not Found");
+return;
 
-    let stamps=data.stamps;
+}
 
-    if(stamps<10){
+let data=snap.data();
 
-        stamps++;
+let stamps=data.stamps;
 
-        await updateDoc(ref,{
-            stamps:stamps
-        });
+if(stamps<10){
 
-        localStorage.setItem("customerStamps",stamps);
+stamps++;
 
-    }
+await updateDoc(ref,{
+stamps:stamps
+});
 
-    alert("Stamp Added 🌹");
+localStorage.setItem("customerStamps",stamps);
 
-    location.reload();
+}
+
+alert("Stamp Added 🌹");
+
+location.reload();
 
 }
 
 
-// ============================
+
+// =======================
 // Remove Stamp
-// ============================
+// =======================
 
 async function removeStamp(){
 
-    const mobile=localStorage.getItem("customerMobile");
+const mobile=localStorage.getItem("customerMobile");
 
-    const ref=doc(db,"customers",mobile);
+const ref=doc(db,"customers",mobile);
 
-    const snap=await getDoc(ref);
+const snap=await getDoc(ref);
 
-    if(!snap.exists()){
-        alert("Customer not found");
-        return;
-    }
+if(!snap.exists()){
 
-    let data=snap.data();
+alert("Customer Not Found");
+return;
 
-    let stamps=data.stamps;
+}
 
-    if(stamps>0){
+let data=snap.data();
 
-        stamps--;
+let stamps=data.stamps;
 
-        await updateDoc(ref,{
-            stamps:stamps
-        });
+if(stamps>0){
 
-        localStorage.setItem("customerStamps",stamps);
+stamps--;
 
-    }
+await updateDoc(ref,{
+stamps:stamps
+});
 
-    alert("Stamp Removed");
+localStorage.setItem("customerStamps",stamps);
 
-    location.reload();
+}
+
+alert("Stamp Removed");
+
+location.reload();
 
 }
 
 
-// ============================
+
+// =======================
 // Search Customer
-// ============================
+// =======================
 
 async function searchCustomer(){
 
-    const mobile=document.getElementById("search").value.trim();
+const mobile=document.getElementById("search").value.trim();
 
-    const snap=await getDoc(doc(db,"customers",mobile));
+const snap=await getDoc(doc(db,"customers",mobile));
 
-    if(snap.exists()){
+if(snap.exists()){
 
-        const data=snap.data();
+const data=snap.data();
 
-        localStorage.setItem("customerName",data.name);
-        localStorage.setItem("customerMobile",data.mobile);
-        localStorage.setItem("customerStamps",data.stamps);
+localStorage.setItem("customerName",data.name);
+localStorage.setItem("customerMobile",data.mobile);
+localStorage.setItem("customerStamps",data.stamps);
 
-        document.getElementById("result").innerHTML=
-        "<h3>"+data.name+"</h3>"+
-        "<p>🌹 "+data.stamps+" / 10</p>";
+document.getElementById("result").innerHTML=
 
-    }else{
+"<h3>"+data.name+"</h3>"+
 
-        document.getElementById("result").innerHTML=
-        "<h3>Customer Not Found</h3>";
+"<p>"+data.mobile+"</p>"+
 
-    }
+"<p>🌹 "+data.stamps+" / 10</p>";
+
+}else{
+
+document.getElementById("result").innerHTML=
+
+"<h3>Customer Not Found</h3>";
+
+}
 
 }
 
 
-// ============================
+
+// =======================
 // Logout
-// ============================
+// =======================
 
 function logoutAdmin(){
 
-    window.location.href="index.html";
+window.location.href="index.html";
 
 }
 
 
-// ============================
-// Global Functions
-// ============================
+
+// Global
 
 window.saveCustomer=saveCustomer;
 window.loginAdmin=loginAdmin;
@@ -207,141 +216,3 @@ window.addStamp=addStamp;
 window.removeStamp=removeStamp;
 window.searchCustomer=searchCustomer;
 window.logoutAdmin=logoutAdmin;
-        localStorage.setItem("customerName",name);
-        localStorage.setItem("customerMobile",mobile);
-        localStorage.setItem("customerStamps","0");
-
-        alert("Customer Registered Successfully 🌸");
-
-        window.location.href="card.html";
-
-    }catch(error){
-
-        alert("Firebase Error : " + error.message);
-
-    }
-
-}
-
-
-// ============================
-// Admin Login
-// ============================
-
-function loginAdmin(){
-
-    const pin=document.getElementById("pin").value.trim();
-
-    if(pin==="2580"){
-
-        window.location.href="dashboard.html";
-
-    }else{
-
-        alert("Wrong Admin PIN");
-
-    }
-
-}
-
-
-// ============================
-// Add Stamp
-// ============================
-
-function addStamp(){
-
-    let stamp=Number(localStorage.getItem("customerStamps")) || 0;
-
-    if(stamp<10){
-
-        stamp++;
-
-        localStorage.setItem("customerStamps",stamp);
-
-    }
-
-    alert("Stamp Added 🌹");
-
-    location.reload();
-
-}
-
-
-// ============================
-// Remove Stamp
-// ============================
-
-function removeStamp(){
-
-    let stamp=Number(localStorage.getItem("customerStamps")) || 0;
-
-    if(stamp>0){
-
-        stamp--;
-
-        localStorage.setItem("customerStamps",stamp);
-
-    }
-
-    alert("Stamp Removed");
-
-    location.reload();
-
-}
-
-
-// ============================
-// Logout
-// ============================
-
-function logoutAdmin(){
-
-    window.location.href="index.html";
-
-}
-
-
-// ============================
-// Search Customer
-// ============================
-
-function searchCustomer(){
-
-    const mobile=document.getElementById("search").value.trim();
-
-    const savedMobile=localStorage.getItem("customerMobile");
-
-    if(mobile===savedMobile){
-
-        document.getElementById("result").innerHTML=`
-
-            <h3>${localStorage.getItem("customerName")}</h3>
-
-            <p>📱 ${savedMobile}</p>
-
-            <p>🌹 ${localStorage.getItem("customerStamps")} / 10</p>
-
-        `;
-
-    }else{
-
-        document.getElementById("result").innerHTML=
-
-        "<h3>Customer Not Found</h3>";
-
-    }
-
-}
-
-
-// ============================
-// Global Functions
-// ============================
-
-window.saveCustomer=saveCustomer;
-window.loginAdmin=loginAdmin;
-window.addStamp=addStamp;
-window.removeStamp=removeStamp;
-window.logoutAdmin=logoutAdmin;
-window.searchCustomer=searchCustomer;
