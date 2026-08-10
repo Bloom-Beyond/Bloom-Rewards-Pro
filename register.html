@@ -2,39 +2,54 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Register - Bloom Rewards</title>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🌸 Bloom & Beyond</h1>
+    <h1>🌸 Bloom & Beyond</h1>
 
-<h2>Create Your Rewards Card</h2>
+    <h2>Create Your Rewards Card</h2>
 
-<div class="card">
+    <div class="card">
 
-<input type="text" id="name" placeholder="Full Name">
+        <input
+            type="text"
+            id="name"
+            placeholder="Full Name"
+            autocomplete="name">
 
-<input type="tel" id="mobile" placeholder="Mobile Number">
+        <input
+            type="tel"
+            id="mobile"
+            placeholder="Mobile Number"
+            maxlength="10"
+            inputmode="numeric">
 
-<button onclick="saveCustomer()">
-Create My Card
-</button>
+        <button onclick="saveCustomer()">
+            Create My Card
+        </button>
 
-</div>
+    </div>
 
 </div>
 
 <script type="module" src="script.js"></script>
 
 </body>
+
+</html></body>
 </html><button onclick="saveCustomer()">
 Create My Card
 </button>
