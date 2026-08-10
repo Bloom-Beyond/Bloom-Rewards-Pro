@@ -4,7 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>My Rewards Card</title>
 
@@ -16,64 +18,47 @@
 
 <div class="container">
 
-<h1>🌸 Bloom & Beyond</h1>
+    <h1>🌸 Bloom & Beyond</h1>
 
-<h2>My Rewards Card</h2>
+    <h2>My Rewards Card</h2>
 
-<div class="card">
+    <div class="reward-card">
 
-<h2 id="customerName">Welcome</h2>
+        <h2 id="customerName">
+            Loading...
+        </h2>
 
-<h3 id="stampText">🌹 0 / 10 Stamps</h3>
+        <p id="customerMobile"></p>
 
-<p>
-Buy 10 Bouquets and Get 1 FREE Bouquet 🎁
-</p>
+        <div id="stampBoxes"
+             class="stamp-grid">
+        </div>
+
+        <h3 id="stampText">
+            🌹 0 / 10 Stamps
+        </h3>
+
+        <p class="reward-text">
+            Buy 10 Bouquets and get
+            1 FREE Bouquet 🎁
+        </p>
+
+    </div>
+
+    <button
+        class="secondary-button"
+        onclick="window.location.href='register.html'">
+        Create Another Card
+    </button>
 
 </div>
-
-<br>
-
-<button onclick="window.location.href='index.html'">
-🏠 Home
-</button>
-
-</div>
-
-<script>
-
-const customerName = localStorage.getItem("customerName");
-const customerStamps = localStorage.getItem("customerStamps");
-
-if(customerName){
-    document.getElementById("customerName").innerHTML =
-    "Welcome, " + customerName;
-}
-
-if(customerStamps){
-    document.getElementById("stampText").innerHTML =
-    "🌹 " + customerStamps + " / 10 Stamps";
-}
-
-</script>
 
 <script type="module" src="script.js"></script>
 
-</body>
-
-</html>let name = localStorage.getItem("customerName");
-let stamps = localStorage.getItem("customerStamps");
-
-document.getElementById("customerName").innerHTML = "Welcome, " + name;
-document.getElementById("stampText").innerHTML = "🌹 " + stamps + " / 10 Stamps";
-<script type="module" src="firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-</script>
-
-document.getElementById("customerName").innerHTML =
-"Welcome, " + localStorage.getItem("customerName");
-
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    loadCustomerCard();
+});
 </script>
 
 </body>
